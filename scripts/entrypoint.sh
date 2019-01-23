@@ -93,8 +93,7 @@ EOF
   ##
   # USER ACCOUNTS
   ##
-  for I_ACCOUNT in "$(env | grep '^ACCOUNT_')"
-  do
+  echo "$(env | grep '^ACCOUNT_')" | while IFS= read -r I_ACCOUNT ; do
     ACCOUNT_NAME=$(echo "$I_ACCOUNT" | cut -d'=' -f1 | sed 's/ACCOUNT_//g' | tr '[:upper:]' '[:lower:]')
     ACCOUNT_PASSWORD=$(echo "$I_ACCOUNT" | sed 's/^[^=]*=//g')
 
